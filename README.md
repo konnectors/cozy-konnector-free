@@ -1,5 +1,5 @@
-[Cozy][cozy] <YOUR SUPER NEW KONNECTOR NAME>
-=======================================
+[Cozy][cozy] Konnector Free
+===========================
 
 What's Cozy?
 ------------
@@ -11,7 +11,7 @@ What's Cozy?
 What's this new konnector?
 --------------------------
 
-<YOUR DESCRIPTION HERE>
+Download all your internet bills from Free.
 
 ### Open a Pull-Request
 
@@ -111,7 +111,7 @@ git push origin build
 
 And your konnector can now be installed using the following url :
 
-git://github.com/cozy/cozy-konnector-<yourkonnector>.git#build
+git://github.com/cozy/cozy-konnector-free.git#build
 
 ### Standard
 
@@ -123,7 +123,7 @@ yarn lint
 
 ### Maintainer
 
-The lead maintainers for this konnector is <YOUR NAME>
+The lead maintainers for this konnector is 
 
 
 ### Get in touch
@@ -139,7 +139,7 @@ You can reach the Cozy Community by:
 License
 -------
 
-<YOUR KONNECTOR NAME> is developed by <your name> and distributed under the [AGPL v3 license][agpl-3.0].
+Cozy Konnector Free is developed by Cozy and distributed under the [AGPL v3 license][agpl-3.0].
 
 [cozy]: https://cozy.io "Cozy Cloud"
 [agpl-3.0]: https://www.gnu.org/licenses/agpl-3.0.html
