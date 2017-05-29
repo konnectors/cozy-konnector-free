@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "name": "konnector name",
+  "name": "Free",
   "type": "node",
-  "slug": "konnectorslug",
-  "description": "description",
-  "source": "git://github.com/cozy/cozy-konnector-thename.git",
+  "slug": "free",
+  "description": "Get all the bills from Free",
+  "source": "git://github.com/cozy/cozy-konnector-free.git",
   "fields": {
     "save_folder": {
       "doctype": "io.cozy.files",
