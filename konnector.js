@@ -131,7 +131,7 @@ function customSaveDataAndFile (requiredFields, entries, data, next) {
 }
 
 function customLinkBankOperations (requiredFields, entries, data, next) {
-  linkBankOperation({
+  linkBankOperation(entries.fetched, 'io.cozy.bills', {
     log,
     model: Bill,
     identifier: ['free telecom', 'free hautdebit'],
