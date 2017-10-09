@@ -63,14 +63,14 @@ function logIn (requiredFields, billInfos, data, next) {
       res.headers.location.indexOf('error') !== -1
 
     if (err || isNoLocation || isNot302 || isError) {
-      log('error', 'Authentification error')
+      log('info', 'Authentification error')
       next('LOGIN_FAILED')
     } else {
       const parameters = res.headers.location.split('?')[1]
       const url = `${billUrl}?${parameters}`
       request.get(url, function (err, res, body) {
         if (err) {
-          log('error', err)
+          console.log(err, 'authentication error details')
           next('LOGIN_FAILED')
         } else {
           data.html = body
