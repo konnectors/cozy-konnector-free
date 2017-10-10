@@ -134,7 +134,7 @@ function customLinkBankOperations (requiredFields, entries, data, next) {
   linkBankOperation(entries.fetched, 'io.cozy.bills', {
     log,
     model: Bill,
-    identifier: ['free telecom', 'free hautdebit'],
+    identifiers: ['free telecom', 'free hautdebit'],
     dateDelta: 10,
     amountDelta: 0.1
   })
