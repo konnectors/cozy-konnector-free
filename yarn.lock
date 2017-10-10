@@ -554,8 +554,8 @@ cozy-client-js@^0.3.17:
   resolved "https://registry.yarnpkg.com/cozy-client-js/-/cozy-client-js-0.3.19.tgz#c20361a8bc6b23eb4d092360040e8765ef5e59a3"
 
 cozy-konnector-libs@^2.5.7:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-2.5.7.tgz#7c1cc8ec2f4e5b1c1a8f9a837d5ef87134d763e6"
+  version "2.5.8"
+  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-2.5.8.tgz#1c2d872c12cb00d35514b23fe7c4d77c2afbd5f0"
   dependencies:
     async "^2.4.1"
     bluebird "^3.5.0"
