@@ -3,7 +3,7 @@
   "name": "Free",
   "type": "node",
   "slug": "free",
-  "source": "git://github.com/cozy/cozy-konnector-free.git",
+  "source": "git://github.com/cozy/cozy-konnector-free-mobile.git",
   "fields": {
     "save_folder": {
       "doctype": "io.cozy.files",
