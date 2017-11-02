@@ -59,6 +59,8 @@ the target service. You can do this in [./konnector-dev-config.json] in the fiel
 
 Now run `yarn dev` one more time, it should be ok.
 
+The files are saved in the root directory of your cozy by default.
+
 ### How does the cozy-stack run the connector ?
 
 The cozy-stack runs the connector in a rkt container to be sure it does not affect the environment.
