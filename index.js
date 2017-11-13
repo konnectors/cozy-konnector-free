@@ -59428,7 +59428,6 @@ function parsePage ($) {
   const bills = []
 
   $('.pane li').each(function () {
-    console.log($(this).html())
     let amount = $(this).find('.last').text()
     amount = amount.replace(' Euros', '').replace('&euro;', '')
     amount = amount.replace(',', '.').trim()
