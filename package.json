@@ -9,9 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "AGPL-3.0",
-  "dependencies": {
-    "cozy-konnector-libs": "3.5.3"
-  },
   "scripts": {
     "start": "node index.js",
     "dev": "cozy-konnector-dev",
@@ -21,8 +18,11 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "lint": "standard --fix index.js",
-    "deploy": "git-directory-deploy --directory build/ --branch build --repo=https://github.com/cozy/cozy-konnector-free.git",
-    "deploy:travis": "git-directory-deploy --username Cozy --email contact@cozycloud.cc --directory build/ --repo=https://$GITHUB_TOKEN@github.com/cozy/cozy-konnector-free.git"
+    "deploy": "git-directory-deploy --directory build/ --branch build --repo=https://github.com/konnectors/cozy-konnector-free.git",
+    "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=https://github.com/konnectors/cozy-konnector-free.git"
+  },
+  "dependencies": {
+    "cozy-konnector-libs": "3.5.3"
   },
   "devDependencies": {
     "copy-webpack-plugin": "4.5.1",
