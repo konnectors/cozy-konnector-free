@@ -30,11 +30,10 @@
     "standalone:replay": "REPLAY=replay cozy-konnector-standalone",
     "build": "webpack",
     "format": "prettier --write '**/*.{js,json}'",
-    "lint": "eslint .",
-    "watch": "webpack --watch",
     "precommit": "yarn lint",
-    "deploy": "git-directory-deploy --directory build/ --branch build --repo=${DEPLOY_REPOSITORY:-https://github.com/konnectors/cozy-konnector-free.git}",
-    "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://github.com/konnectors/cozy-konnector-free.git}"
+    "lint": "eslint .",
+    "deploy": "git-directory-deploy --directory build/ --branch build --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-free.git}",
+    "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-free.git}"
   },
   "dependencies": {
     "cozy-konnector-libs": "3.5.3"
