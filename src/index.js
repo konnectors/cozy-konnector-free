@@ -1,5 +1,10 @@
 const moment = require('moment')
-const {log, BaseKonnector, saveBills, requestFactory} = require('cozy-konnector-libs')
+const {
+  log,
+  BaseKonnector,
+  saveBills,
+  requestFactory
+} = require('cozy-konnector-libs')
 
 let rq = requestFactory({
   cheerio: true,
@@ -8,17 +13,19 @@ let rq = requestFactory({
   jar: true
 })
 
-module.exports = new BaseKonnector(function fetch (fields) {
+module.exports = new BaseKonnector(function fetch(fields) {
   return logIn(fields)
-  .then(parsePage)
-  .then(entries => saveBills(entries, fields.folderPath, {
-    timeout: Date.now() + 60 * 1000,
-    identifiers: ['free telecom', 'free hautdebit']
-  }))
+    .then(parsePage)
+    .then(entries =>
+      saveBills(entries, fields.folderPath, {
+        timeout: Date.now() + 60 * 1000,
+        identifiers: ['free telecom', 'free hautdebit']
+      })
+    )
 })
 
 // Procedure to login to Free website.
-function logIn (fields) {
+function logIn(fields) {
   const loginUrl = 'https://subscribe.free.fr/login/login.pl'
   const billUrl = 'https://adsl.free.fr/liste-factures.pl'
 
@@ -36,11 +43,11 @@ function logIn (fields) {
     simple: false
   }
 
-  return rq(options)
-  .then(res => {
+  return rq(options).then(res => {
     const isNoLocation = !res.headers.location
     const isNot302 = res.statusCode !== 302
-    const isError = res.headers.location && res.headers.location.indexOf('error') !== -1
+    const isError =
+      res.headers.location && res.headers.location.indexOf('error') !== -1
     if (isNoLocation || isNot302 || isError) {
       log('info', 'Authentification error')
       throw new Error('LOGIN_FAILED')
@@ -48,8 +55,7 @@ function logIn (fields) {
 
     const parameters = res.headers.location.split('?')[1]
     const url = `${billUrl}?${parameters}`
-    return rq(url)
-    .catch(err => {
+    return rq(url).catch(err => {
       console.log(err, 'authentication error details')
       throw new Error('LOGIN_FAILED')
     })
@@ -57,16 +63,20 @@ function logIn (fields) {
 }
 
 // Parse the fetched page to extract bill data.
-function parsePage ($) {
+function parsePage($) {
   const bills = []
 
-  $('.pane li').each(function () {
-    let amount = $(this).find('.last').text()
+  $('.pane li').each(function() {
+    let amount = $(this)
+      .find('.last')
+      .text()
     amount = amount.replace(' Euros', '').replace('&euro;', '')
     amount = amount.replace(',', '.').trim()
     amount = parseFloat(amount)
 
-    let pdfUrl = $(this).find('a').attr('href')
+    let pdfUrl = $(this)
+      .find('a')
+      .attr('href')
     pdfUrl = `https://adsl.free.fr/${pdfUrl}`
 
     let month = pdfUrl.split('&')[2].split('=')[1]
@@ -88,6 +98,6 @@ function parsePage ($) {
   return bills
 }
 
-function getFileName (date) {
+function getFileName(date) {
   return `${date.format('YYYYMM')}_free.pdf`
 }
