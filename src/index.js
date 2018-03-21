@@ -59,6 +59,8 @@ function logIn (fields) {
       throw new Error('LOGIN_FAILED')
     }
 
+    log('info', 'Successfully logged in.')
+
     const parameters = res.headers.location.split('?')[1]
     const url = `${billUrl}?${parameters}`
     return rq(url).catch(err => {
