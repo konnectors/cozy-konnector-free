@@ -19,7 +19,7 @@ let rq = requestFactory({
   jar: true
 })
 
-module.exports = new BaseKonnector(function fetch (fields) {
+module.exports = new BaseKonnector(function fetch(fields) {
   return logIn(fields)
     .then(parsePage)
     .then(entries =>
@@ -31,7 +31,7 @@ module.exports = new BaseKonnector(function fetch (fields) {
 })
 
 // Procedure to login to Free website.
-function logIn (fields) {
+function logIn(fields) {
   const loginUrl = 'https://subscribe.free.fr/login/login.pl'
   const billUrl = 'https://adsl.free.fr/liste-factures.pl'
 
@@ -64,17 +64,18 @@ function logIn (fields) {
     const parameters = res.headers.location.split('?')[1]
     const url = `${billUrl}?${parameters}`
     return rq(url).catch(err => {
-      console.log(err, 'authentication error details')
+      log('info', 'authentication error details')
+      log('info', err)
       throw new Error('LOGIN_FAILED')
     })
   })
 }
 
 // Parse the fetched page to extract bill data.
-function parsePage ($) {
+function parsePage($) {
   const bills = []
 
-  $('.pane li').each(function () {
+  $('.pane li').each(function() {
     let amount = $(this)
       .find('.last')
       .text()
@@ -106,6 +107,6 @@ function parsePage ($) {
   return bills
 }
 
-function getFileName (date) {
+function getFileName(date) {
   return `${date.format('YYYYMM')}_free.pdf`
 }
