@@ -6,6 +6,8 @@ env:
     # kosssi GITHUB_TOKEN
     # to generate yours : travis encrypt GITHUB_TOKEN=<your_GITHUB_TOKEN>
     - secure: "UbI4OnNVyPc1CTQk1IpofOnL2BTS2DfgHC+VmKrQweiJpq3833tjAonbtal0QbqCZ9ZRxXMIkMlY8bodPbHTV2TBsBYOF6HpbYYASFCCLchamLledc2NhtWr7iFBN+owuOqIhK235U/Gl5LOmHaGvQNw4gjpXelkQIjOC1WIRH0C83dXyb7fGRrEG6Dhp4FKPqpARUeEKPprSecq1077Ah+bw6UIQAD3fUAxoFTm9DA9icyezYjTHmhLlaSXSEIgqG2P9xHdvvT16+alTyaXY3t2+E1E8iBjlOzspwPikgMyv8IW0DQgj4BsIK31ugMRYNC6+28CF9/c5H/Rs9oiIaOjnBC0fmlazBbqyHKoR6lfwuWBjpfA2esrPiahaJqlwghRxCsKHe8HA3FqDORzGHqL/Q67uPjcTn7zyKddeFc9QgBbuH853BN3ClAkzApP6Q3c/6YsSOjHLyL0sQ7Vmt5pfaLad3Llza1lUd64dxENlqHoAqabKn/MiXA8pYCv2k9FC1QM/EYF6YJSrBQwIClXYzYPiT5t0yE1SIIZywhMN9x47vjb9WiZsXJPTX6SFD4UV0OdXP/sxFKzKipg7MjfZKSvpx75pBjOx+iN3uqIW9zp9urIctMsSthvuvhcSPd1IbeiOEitxJEiqyWGnwP++LKlbM4BACjsaqbBwLg="
+    # REGISTRY_TOKEN
+    - secure: "ux3/KIjRdB9fBcDcmaZGy4RonOO2LFiE5lfMyDqNXxMKTK8258RA4Kh3nx/foyJxJmv+kcrjjiC5fAbjW3Ic/KbLGFfCR2eAKAjqYijNthK6rdn92zFvX0vYBsaij04nhsvnpVJMMu9WmapJvc+PhcECVS4Uvwste4vjQR9csNQqN3WxDqdI9mzJExl+NSORTVhcn+qsa6QpzWFNrrWvgbG2GVca1DJIEL4eFldEIZCg1y1sYFv3mb1W2qwklMY6tY4Ef/rAmKqfScFgTzyHI5N9cUU8aYkXTkS6aI4vmYuTpPwFiEWe8t2U7+FwY1uGkre5mRnYLf/aHwNqj+C8xHkDgIEc0HQj9mv/j18zgONgBlixurv4TsgtDeCLYhKo8dweToMfCGezXB26ftndxlXmN3YGcQuZjFkm+wZeq6tGapzayLaJlbJrAwl9FT9sduBaAHQI6w5WR5Bm6TfZRz798oAx9z4ObV7RiYdgoDm9dHbPlI03fkj/8TJxmxJl1qhHVeNr5HKJom/DOBx+sCxsboz/u3iAEbVF5eljfWcJCAuirYAm8BTkBbrfxwdITuzzqUJWPrczIAr/BTr9od9nsCX+fDAoVf5X9fvo2D/tdE+W87yAYZjCu3mLntEZmrmxnBsLyxKjbVcNhGm1OAolC2EMECOOZ4+ttVG23RA="
   matrix:
     # flo account
     # to generate yours : travis encrypt KONNECTOR_CONFIG=\'"`cat konnector-dev-config.json | tr -d '\n'`"\' -r konnectors/cozy-konnector-free
@@ -19,15 +21,15 @@ script:
   - yarn build
   - if [ $TRAVIS_SECURE_ENV_VARS = "true" ]; then yarn test; fi
 deploy:
-  - provider: script
-    repo: konnectors/cozy-konnector-free
-    skip-cleanup: true
-    script: yarn deploy
-    on:
-      branch: master
-  - provider: script
-    repo: konnectors/cozy-konnector-free
-    skip-cleanup: true
-    script: yarn deploy:prod
-    on:
-      branch: prod
+- provider: script
+  repo: konnectors/cozy-konnector-free
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  repo: konnectors/cozy-konnector-free
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
+  on:
+    tags: true

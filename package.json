@@ -26,14 +26,15 @@
     "precommit": "yarn lint",
     "lint": "eslint --fix .",
     "test": "konitor testit .",
-    "deploy": "git-directory-deploy --directory build/ --branch build --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-free.git}",
-    "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-free.git}"
+    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-free.git}",
+    "cozyPublish": "cozy-app-publish --token $REGISTRY_TOKEN --build-commit $(git rev-parse ${DEPLOY_BRANCH:-build})"
   },
   "dependencies": {
     "cozy-konnector-libs": "3.8.1"
   },
   "devDependencies": {
     "copy-webpack-plugin": "4.5.1",
+    "cozy-app-publish": "0.3.5",
     "cozy-jobs-cli": "1.0.14",
     "eslint": "4.19.1",
     "eslint-config-cozy-app": "0.5.1",
