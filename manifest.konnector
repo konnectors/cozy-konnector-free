@@ -50,7 +50,7 @@
   "locales": {
     "fr": {
       "short_description": "Récupérer vos données Free dans votre Cozy",
-      "long_description": "Ce fournisseur vous permettra de récupérer l'ensemble de vos facture Free dans votre Cozy."
+      "long_description": "Ce fournisseur vous permettra de récupérer l'ensemble de vos facture Free dans votre Cozy.",
       "permissions": {
         "bank operations": {
           "description": "Utilisé pour relier les factures à des operations bancaires"
@@ -68,7 +68,7 @@
     },
     "en": {
       "short_description": "Fetch your Free data in your Cozy",
-      "long_description": "This provider will allow you to fetch all your Free bills in your Cozy."
+      "long_description": "This provider will allow you to fetch all your Free bills in your Cozy.",
       "permissions": {
         "bank operations": {
           "description": "Required to link bank operations to bills"
