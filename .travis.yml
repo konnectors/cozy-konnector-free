@@ -1,35 +1,44 @@
 language: node_js
 node_js:
-  - '8'
+- '8'
 env:
   global:
-    # kosssi GITHUB_TOKEN
-    # to generate yours : travis encrypt GITHUB_TOKEN=<your_GITHUB_TOKEN>
-    - secure: "UbI4OnNVyPc1CTQk1IpofOnL2BTS2DfgHC+VmKrQweiJpq3833tjAonbtal0QbqCZ9ZRxXMIkMlY8bodPbHTV2TBsBYOF6HpbYYASFCCLchamLledc2NhtWr7iFBN+owuOqIhK235U/Gl5LOmHaGvQNw4gjpXelkQIjOC1WIRH0C83dXyb7fGRrEG6Dhp4FKPqpARUeEKPprSecq1077Ah+bw6UIQAD3fUAxoFTm9DA9icyezYjTHmhLlaSXSEIgqG2P9xHdvvT16+alTyaXY3t2+E1E8iBjlOzspwPikgMyv8IW0DQgj4BsIK31ugMRYNC6+28CF9/c5H/Rs9oiIaOjnBC0fmlazBbqyHKoR6lfwuWBjpfA2esrPiahaJqlwghRxCsKHe8HA3FqDORzGHqL/Q67uPjcTn7zyKddeFc9QgBbuH853BN3ClAkzApP6Q3c/6YsSOjHLyL0sQ7Vmt5pfaLad3Llza1lUd64dxENlqHoAqabKn/MiXA8pYCv2k9FC1QM/EYF6YJSrBQwIClXYzYPiT5t0yE1SIIZywhMN9x47vjb9WiZsXJPTX6SFD4UV0OdXP/sxFKzKipg7MjfZKSvpx75pBjOx+iN3uqIW9zp9urIctMsSthvuvhcSPd1IbeiOEitxJEiqyWGnwP++LKlbM4BACjsaqbBwLg="
-    # REGISTRY_TOKEN
-    - secure: "ux3/KIjRdB9fBcDcmaZGy4RonOO2LFiE5lfMyDqNXxMKTK8258RA4Kh3nx/foyJxJmv+kcrjjiC5fAbjW3Ic/KbLGFfCR2eAKAjqYijNthK6rdn92zFvX0vYBsaij04nhsvnpVJMMu9WmapJvc+PhcECVS4Uvwste4vjQR9csNQqN3WxDqdI9mzJExl+NSORTVhcn+qsa6QpzWFNrrWvgbG2GVca1DJIEL4eFldEIZCg1y1sYFv3mb1W2qwklMY6tY4Ef/rAmKqfScFgTzyHI5N9cUU8aYkXTkS6aI4vmYuTpPwFiEWe8t2U7+FwY1uGkre5mRnYLf/aHwNqj+C8xHkDgIEc0HQj9mv/j18zgONgBlixurv4TsgtDeCLYhKo8dweToMfCGezXB26ftndxlXmN3YGcQuZjFkm+wZeq6tGapzayLaJlbJrAwl9FT9sduBaAHQI6w5WR5Bm6TfZRz798oAx9z4ObV7RiYdgoDm9dHbPlI03fkj/8TJxmxJl1qhHVeNr5HKJom/DOBx+sCxsboz/u3iAEbVF5eljfWcJCAuirYAm8BTkBbrfxwdITuzzqUJWPrczIAr/BTr9od9nsCX+fDAoVf5X9fvo2D/tdE+W87yAYZjCu3mLntEZmrmxnBsLyxKjbVcNhGm1OAolC2EMECOOZ4+ttVG23RA="
+  - GH_USER_EMAIL="travis@example.org"
+  - GH_USER_NAME="cozy-bot"
+  - DEPLOY_REPOSITORY="git@github.com:konnectors/cozy-konnector-free.git"
+  - secure: fv//L/MM4E/KwQwzcycAf9Y7yFadEHnmrlByE4zDcVfdjU8d21uvFl4vM2NInz7tLOZBxVr11fI8yxNgLDLQMFT0qZ0UfmKuKx5CcFBrMWU2iVnJdlBD9RlocgvIXpzbD9pyh4DLAEXVdVIXRGy7agiraW76F64Q/sENsH3vX54ODBgzNOjelw7vMWnC7hBIsWkWTsuyKfoeukjuobxkWj8xlVxu5Xo4DIQA8Q3Slv6OZHXTmhRwkRMYc66oV4hU/fiHfhbKkDiIIrrjzge1WnC5lt9KecqoQblZd17KcMsZt/zJlSLCPhx83vlFsJ1lubGL9b8dzZr2YNElxhRQmfVQcQOt5ZXAdcoyn9S33W8ei30tgBPT2Asfv83bZCSQp3UeSZpWTRGhT5IgMJnRDQZ8zYNAAtwOBPAoTZ/wb3o2SwY0expUsLVFYNHwRYfktKSMsWwUQZTDyPa4JbAQhKqjTlRze8MyG/9o9bpD0sd4NiypSkDQEKUfHNWbOMmEyhD+D4MLt0ulSe2wbgWW0GHMvMziFvt2VlmvdR6jRD2TzTLa/aqj5bBiFRmcXj8mtm/dv+xuy7qK+0c7LDinx6dpjuuEA6BeN9frPI3ZSqwGiVaLLTmnPmjjPMQV5HAJSYx2BOPXgRUfVCx8yB6xQcpf/EFwZ+4mt2NU2kZc6OA=
   matrix:
-    # flo account
-    # to generate yours : travis encrypt KONNECTOR_CONFIG=\'"`cat konnector-dev-config.json | tr -d '\n'`"\' -r konnectors/cozy-konnector-free
-    - secure: "uxrcd5AhXWNX4zTeI2y7QTD4b44rU0dOfl1q0+AIrOlBb47TfNuaKbeHZQ1hFwOBnhZV9CTkPU0Jgw5tVuYmsn21xjuUpcmf3kfvPnuPxoGMepPVkAw1LeQwyx706H4XK27o1h5RwwjfWQnbEcQbbBP2y9ACVP940NUGQcZ/hDQUe2QyO0RVxjzuE2hHXZVjlc65V6zvZuwo0aJaaywZ8POrepu/o6DZp5XIaLVeREzjEhACXXfkbgyL1O0pPNAdWtLfFRa7MESWftylsYUtPy3jXE5Q+iVz0ymQ3wJP8WBK95VYGQRZ3erpw937Kup4TAcH6PwIz8Ap4TExC2JowEbFG3nQw/IaYvdAa5lKAl5TvTrT+E58kHFFo7Tq9uAcUj6+yH2Zfn8oE2TZh24AQxVSP1x3gMDppLkskZktW27dsfnj2i4kCRpaCjXhNxj2EH9xx4KRZOTG8mYGBh+PnML/6gdaektaUWJwhSWZaImvx5Zhj2gpM3Smp1i6/ufjDilNvdCGCqMoFirCEOhC9PIeqVYK7OOvdi/goOIkgphDln2G1Gev2/ch+SzapGqcHbAsezycmau6urOQ09yLxNSPROdUcvre9/U0MfDjn73cNJsqHXtDY6BDRqzyXkFHjvoQOqFQ0lplhYiWWtbXRiPOLpasVwt9lqdYUhpZ8OQ="
+  - secure: uxrcd5AhXWNX4zTeI2y7QTD4b44rU0dOfl1q0+AIrOlBb47TfNuaKbeHZQ1hFwOBnhZV9CTkPU0Jgw5tVuYmsn21xjuUpcmf3kfvPnuPxoGMepPVkAw1LeQwyx706H4XK27o1h5RwwjfWQnbEcQbbBP2y9ACVP940NUGQcZ/hDQUe2QyO0RVxjzuE2hHXZVjlc65V6zvZuwo0aJaaywZ8POrepu/o6DZp5XIaLVeREzjEhACXXfkbgyL1O0pPNAdWtLfFRa7MESWftylsYUtPy3jXE5Q+iVz0ymQ3wJP8WBK95VYGQRZ3erpw937Kup4TAcH6PwIz8Ap4TExC2JowEbFG3nQw/IaYvdAa5lKAl5TvTrT+E58kHFFo7Tq9uAcUj6+yH2Zfn8oE2TZh24AQxVSP1x3gMDppLkskZktW27dsfnj2i4kCRpaCjXhNxj2EH9xx4KRZOTG8mYGBh+PnML/6gdaektaUWJwhSWZaImvx5Zhj2gpM3Smp1i6/ufjDilNvdCGCqMoFirCEOhC9PIeqVYK7OOvdi/goOIkgphDln2G1Gev2/ch+SzapGqcHbAsezycmau6urOQ09yLxNSPROdUcvre9/U0MfDjn73cNJsqHXtDY6BDRqzyXkFHjvoQOqFQ0lplhYiWWtbXRiPOLpasVwt9lqdYUhpZ8OQ=
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 script:
-  - yarn lint
-  - yarn build
-  - if [ $TRAVIS_SECURE_ENV_VARS = "true" ]; then yarn test; fi
+- yarn lint
+- yarn build
+- if [ $TRAVIS_SECURE_ENV_VARS = "true" ]; then yarn test; fi
 deploy:
 - provider: script
-  repo: konnectors/cozy-konnector-free
   skip-cleanup: true
-  script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
   on:
     branch: master
 - provider: script
-  repo: konnectors/cozy-konnector-free
   skip-cleanup: true
-  script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
+  script: DEPLOY_BRANCH=latest yarn deploy
+  on:
+    branch: prod
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
   on:
     tags: true
+before_install:
+- openssl aes-256-cbc -K $encrypted_2a10765515ab_key -iv $encrypted_2a10765515ab_iv
+  -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/github_deploy_key
+- ssh-add /tmp/github_deploy_key
+after_deploy:
+- rm /tmp/github_deploy_key
+- ssh-add -D
