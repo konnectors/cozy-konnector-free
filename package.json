@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-free",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "repository": {
     "type": "git",
@@ -32,13 +32,13 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-konnector-libs": "4.6.0"
+    "cozy-konnector-libs": "4.6.1"
   },
   "devDependencies": {
     "copy-webpack-plugin": "4.5.2",
     "cozy-app-publish": "0.3.6",
     "cozy-jobs-cli": "1.4.2",
-    "eslint": "4.19.1",
+    "eslint": "5.0.1",
     "eslint-config-cozy-app": "0.8.0",
     "git-directory-deploy": "1.5.1",
     "husky": "0.14.3",
