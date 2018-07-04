@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-free",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "copy-webpack-plugin": "4.5.2",
     "cozy-app-publish": "0.3.6",
-    "cozy-jobs-cli": "1.4.2",
+    "cozy-jobs-cli": "1.4.4",
     "eslint": "5.0.1",
     "eslint-config-cozy-app": "0.8.0",
     "git-directory-deploy": "1.5.1",
