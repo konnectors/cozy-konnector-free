@@ -85,5 +85,6 @@
       }
     }
   },
+  "banksTransactionRegExp": "\\bfree (telecom|hautdebit)\\b",
   "manifest_version": "2"
 }
