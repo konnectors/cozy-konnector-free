@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "Free",
   "type": "konnector",
   "language": "node",
@@ -84,5 +84,6 @@
         }
       }
     }
-  }
+  },
+  "manifest_version": "2"
 }
