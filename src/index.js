@@ -60,8 +60,10 @@ function logIn(fields) {
     }
     // Throw login fail if we are redirected on the webmail
     // That just not a valid account
-    if (res.statusCode === 302 &&
-        res.headers.location.includes('/accesgratuit/console/console.pl')) {
+    if (
+      res.statusCode === 302 &&
+      res.headers.location.includes('/accesgratuit/console/console.pl')
+    ) {
       log('info', 'Authentification error')
       log('info', 'This account seems a webmail account only')
       throw new Error('LOGIN_FAILED')
