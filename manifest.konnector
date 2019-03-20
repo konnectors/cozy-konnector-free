@@ -5,7 +5,7 @@
   "language": "node",
   "icon": "free.svg",
   "slug": "free",
-  "source": "git://github.com/konnectors/cozy-konnector-free.git",
+  "source": "git@github.com:konnectors/cozy-konnector-free.git",
   "editor": "Cozy",
   "vendor_link": "https://www.free.fr/",
   "categories": [
