@@ -25,7 +25,9 @@ module.exports = new BaseKonnector(function fetch(fields) {
     .then(entries =>
       saveBills(entries, fields.folderPath, {
         timeout: Date.now() + 60 * 1000,
-        identifiers: ['free telecom', 'free hautdebit']
+        identifiers: ['free telecom', 'free hautdebit'],
+        sourceAccount: this._account._id,
+        sourceAccountIdentifier: fields.login
       })
     )
 })
