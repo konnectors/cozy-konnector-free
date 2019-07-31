@@ -8,7 +8,6 @@ const moment = require('moment')
 const {
   log,
   BaseKonnector,
-  saveBills,
   requestFactory
 } = require('cozy-konnector-libs')
 
@@ -23,7 +22,7 @@ module.exports = new BaseKonnector(function fetch(fields) {
   return logIn(fields)
     .then(parsePage)
     .then(entries =>
-      saveBills(entries, fields.folderPath, {
+      this.saveBills(entries, fields.folderPath, {
         timeout: Date.now() + 60 * 1000,
         identifiers: ['free telecom', 'free hautdebit'],
         sourceAccount: this._account._id,
@@ -102,11 +101,27 @@ function parsePage($) {
 
     let month = pdfUrl.split('&')[2].split('=')[1]
     let date = moment(month, 'YYYYMM')
+    let idBill = pdfUrl.split('&')[3].split('=')[1]
+    let contractNumber = pdfUrl.split('=')[1].split('&')[0]
 
     let bill = {
       amount,
       date: date.toDate(),
-      vendor: 'Free'
+      vendor: 'Free',
+      fileAttributes: {
+        metadata: {
+          classification: 'invoicing',
+          datetime: date.toDate(),
+          datetimeLabel: 'issueDate',
+          contentAuthor: 'free',
+          subClassification: 'invoice',
+          categories: ['isp'],
+          issueDate: date.toDate(),
+          invoiceNumber: idBill,
+          contractReference: contractNumber,
+          isSubscription: true
+        }
+      }
     }
 
     if (date.year() > 2011) {
