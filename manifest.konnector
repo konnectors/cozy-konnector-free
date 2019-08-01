@@ -1,14 +1,16 @@
 {
-  "version": "1.0.5",
+  "version": "1.4.0",
   "name": "Free",
   "type": "konnector",
   "language": "node",
   "icon": "free.svg",
   "slug": "free",
-  "source": "git://github.com/konnectors/cozy-konnector-free.git#build",
+  "source": "git@github.com:konnectors/cozy-konnector-free.git",
   "editor": "Cozy",
   "vendor_link": "https://www.free.fr/",
-  "categories": ["isp"],
+  "categories": [
+    "isp"
+  ],
   "fields": {
     "login": {
       "type": "text"
@@ -39,14 +41,19 @@
     },
     "accounts": {
       "type": "io.cozy.accounts",
-      "verbs": ["GET"]
+      "verbs": [
+        "GET"
+      ]
     }
   },
   "developer": {
     "name": "Cozy Cloud",
     "url": "https://cozy.io"
   },
-  "langs": ["fr", "en"],
+  "langs": [
+    "fr",
+    "en"
+  ],
   "locales": {
     "fr": {
       "short_description": "Récupérer vos données Free dans votre Cozy",
