@@ -13,17 +13,20 @@ let rq = requestFactory({
 })
 
 module.exports = new BaseKonnector(function fetch(fields) {
-  return logIn(fields)
+  return logIn
+    .bind(this)(fields)
     .then(parsePage)
     .then(entries =>
       this.saveBills(entries, fields, {
+        fileIdAttributes: ['vendorRef'],
         identifiers: ['free telecom', 'free hautdebit']
       })
     )
 })
 
 // Procedure to login to Free website.
-function logIn(fields) {
+async function logIn(fields) {
+  await this.deactivateAutoSuccessfulLogin()
   const loginUrl = 'https://subscribe.free.fr/login/do_login.pl'
   const billUrl = 'https://adsl.free.fr/liste-factures.pl'
 
@@ -41,35 +44,34 @@ function logIn(fields) {
     simple: false
   }
 
-  return rq(options).then(res => {
-    const isNoLocation = !res.headers.location
-    const isNot302 = res.statusCode !== 302
-    const isError =
-      res.headers.location && res.headers.location.indexOf('error') !== -1
-    if (isNoLocation || isNot302 || isError) {
-      log('info', 'Authentification error')
-      throw new Error('LOGIN_FAILED')
-    }
-    // Throw login fail if we are redirected on the webmail
-    // That just not a valid account
-    if (
-      res.statusCode === 302 &&
-      res.headers.location.includes('/accesgratuit/console/console.pl')
-    ) {
-      log('info', 'Authentification error')
-      log('info', 'This account seems a webmail account only')
-      throw new Error('LOGIN_FAILED')
-    }
+  const res = await rq(options)
+  const isNoLocation = !res.headers.location
+  const isNot302 = res.statusCode !== 302
+  const isError =
+    res.headers.location && res.headers.location.indexOf('error') !== -1
+  if (isNoLocation || isNot302 || isError) {
+    log('info', 'Authentification error')
+    throw new Error('LOGIN_FAILED')
+  }
+  // Throw login fail if we are redirected on the webmail
+  // That just not a valid account
+  if (
+    res.statusCode === 302 &&
+    res.headers.location.includes('/accesgratuit/console/console.pl')
+  ) {
+    log('info', 'Authentification error')
+    log('info', 'This account seems a webmail account only')
+    throw new Error('LOGIN_FAILED')
+  }
 
-    log('info', 'Successfully logged in.')
+  await this.notifySuccessfulLogin()
 
-    const parameters = res.headers.location.split('?')[1]
-    const url = `${billUrl}?${parameters}`
-    return rq(url).catch(err => {
-      log('info', 'authentication error details')
-      log('info', err)
-      throw new Error('LOGIN_FAILED')
-    })
+  const parameters = res.headers.location.split('?')[1]
+  const url = `${billUrl}?${parameters}`
+  return rq(url).catch(err => {
+    log('info', 'authentication error details')
+    log('info', err)
+    throw new Error('LOGIN_FAILED')
   })
 }
 
@@ -99,6 +101,7 @@ function parsePage($) {
       amount,
       date: date.toDate(),
       vendor: 'Free',
+      vendorRef: idBill,
       fileAttributes: {
         metadata: {
           classification: 'invoicing',
