@@ -1,5 +1,3 @@
-// Force sentry DSN into environment variables
-// In the future, will be set by the stack
 process.env.SENTRY_DSN =
   process.env.SENTRY_DSN ||
   'https://725c971bd511410393dca39305639382:b71f4dcedee14193ae5d82726413138b@sentry.cozycloud.cc/23'
@@ -18,18 +16,15 @@ module.exports = new BaseKonnector(function fetch(fields) {
   return logIn(fields)
     .then(parsePage)
     .then(entries =>
-      this.saveBills(entries, fields.folderPath, {
-        timeout: Date.now() + 60 * 1000,
-        identifiers: ['free telecom', 'free hautdebit'],
-        sourceAccount: this._account._id,
-        sourceAccountIdentifier: fields.login
+      this.saveBills(entries, fields, {
+        identifiers: ['free telecom', 'free hautdebit']
       })
     )
 })
 
 // Procedure to login to Free website.
 function logIn(fields) {
-  const loginUrl = 'https://subscribe.free.fr/login/login.pl'
+  const loginUrl = 'https://subscribe.free.fr/login/do_login.pl'
   const billUrl = 'https://adsl.free.fr/liste-factures.pl'
 
   const form = {
