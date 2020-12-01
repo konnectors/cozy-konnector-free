@@ -4,7 +4,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cozy/cozy-konnector-free.git"
+    "url": "git@github.com:konnectors/cozy-konnector-free.git"
   },
   "keywords": [],
   "author": "Cozy Cloud",
@@ -37,10 +37,11 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-konnector-libs": "4.37.0",
+    "cozy-konnector-libs": "4.37.1",
     "moment": "2.29.1"
   },
   "devDependencies": {
-    "cozy-konnector-build": "1.0.1"
+    "cozy-jobs-cli": "1.15.1",
+    "cozy-konnector-build": "1.1.1"
   }
 }
