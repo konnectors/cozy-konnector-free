@@ -41,6 +41,6 @@
     "moment": "2.29.1"
   },
   "devDependencies": {
-    "cozy-konnector-build": "1.0.1"
+    "cozy-konnector-build": "1.1.1"
   }
 }
