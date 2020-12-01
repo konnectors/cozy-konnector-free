@@ -4,7 +4,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cozy/cozy-konnector-free.git"
+    "url": "git@github.com:konnectors/cozy-konnector-free.git"
   },
   "keywords": [],
   "author": "Cozy Cloud",
@@ -41,6 +41,7 @@
     "moment": "2.29.1"
   },
   "devDependencies": {
+    "cozy-jobs-cli": "1.15.1",
     "cozy-konnector-build": "1.1.1"
   }
 }
