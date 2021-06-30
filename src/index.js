@@ -17,7 +17,12 @@ let rq = requestFactory({
   // debug: true,
   jar: true
 })
-
+let rq_withoutcheerio = requestFactory({
+  cheerio: false,
+  json: false,
+  // debug: true,
+  jar: true
+})
 module.exports = new BaseKonnector(function fetch(fields) {
   return logIn
     .bind(this)(fields)
@@ -50,7 +55,7 @@ async function logIn(fields) {
     simple: false
   }
 
-  const res = await rq(options)
+  const res = await rq_withoutcheerio(options)
   const isNoLocation = !res.headers.location
   const isNot302 = res.statusCode !== 302
   const isError =
