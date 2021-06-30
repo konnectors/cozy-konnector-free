@@ -11,6 +11,12 @@ let rq = requestFactory({
   // debug: true,
   jar: true
 })
+let rq = requestFactory({
+  cheerio: true,
+  json: false,
+  // debug: true,
+  jar: true
+})
 
 module.exports = new BaseKonnector(function fetch(fields) {
   return logIn
