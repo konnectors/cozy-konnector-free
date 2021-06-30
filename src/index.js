@@ -11,12 +11,6 @@ let rq = requestFactory({
   // debug: true,
   jar: true
 })
-let rq = requestFactory({
-  cheerio: true,
-  json: false,
-  // debug: true,
-  jar: true
-})
 let rq_withoutcheerio = requestFactory({
   cheerio: false,
   json: false,
