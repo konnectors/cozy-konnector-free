@@ -3,7 +3,7 @@ process.env.SENTRY_DSN =
   'https://725c971bd511410393dca39305639382:b71f4dcedee14193ae5d82726413138b@sentry.cozycloud.cc/23'
 
 const moment = require('moment')
-const { log, BaseKonnector, requestFactory } = require('cozy-konnector-libs')
+const { log, BaseKonnector, requestFactory, cozyClient } = require('cozy-konnector-libs')
 
 let rq = requestFactory({
   cheerio: true,
@@ -11,6 +11,10 @@ let rq = requestFactory({
   // debug: true,
   jar: true
 })
+
+// Importing models to get qualification by label
+const models = cozyClient.new.models
+const { Qualification } = models.document
 
 module.exports = new BaseKonnector(function fetch(fields) {
   return logIn
@@ -104,16 +108,14 @@ function parsePage($) {
       vendorRef: idBill,
       fileAttributes: {
         metadata: {
-          classification: 'invoicing',
           datetime: date.toDate(),
           datetimeLabel: 'issueDate',
           contentAuthor: 'free',
-          subClassification: 'invoice',
-          categories: ['isp'],
           issueDate: date.toDate(),
           invoiceNumber: idBill,
           contractReference: contractNumber,
-          isSubscription: true
+          isSubscription: true,
+          qualification: Qualification.getByLabel('isp_invoice')
         }
       }
     }
