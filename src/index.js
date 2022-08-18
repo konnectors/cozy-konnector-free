@@ -3,7 +3,12 @@ process.env.SENTRY_DSN =
   'https://725c971bd511410393dca39305639382:b71f4dcedee14193ae5d82726413138b@sentry.cozycloud.cc/23'
 
 const moment = require('moment')
-const { log, BaseKonnector, requestFactory, cozyClient } = require('cozy-konnector-libs')
+const {
+  log,
+  BaseKonnector,
+  requestFactory,
+  cozyClient
+} = require('cozy-konnector-libs')
 
 let rq = requestFactory({
   cheerio: true,
@@ -49,10 +54,12 @@ async function logIn(fields) {
   }
 
   const res = await rq(options)
-  const isNoLocation = !res.headers.location
+  // Old fashion node 12 headers call
+  // const isNoLocation = !res.headers.location
+  const location = res.caseless.dict.location
+  const isNoLocation = !location
   const isNot302 = res.statusCode !== 302
-  const isError =
-    res.headers.location && res.headers.location.indexOf('error') !== -1
+  const isError = location && location.indexOf('error') !== -1
   if (isNoLocation || isNot302 || isError) {
     log('info', 'Authentification error')
     throw new Error('LOGIN_FAILED')
@@ -61,7 +68,7 @@ async function logIn(fields) {
   // That just not a valid account
   if (
     res.statusCode === 302 &&
-    res.headers.location.includes('/accesgratuit/console/console.pl')
+    location.includes('/accesgratuit/console/console.pl')
   ) {
     log('info', 'Authentification error')
     log('info', 'This account seems a webmail account only')
@@ -70,7 +77,7 @@ async function logIn(fields) {
 
   await this.notifySuccessfulLogin()
 
-  const parameters = res.headers.location.split('?')[1]
+  const parameters = location.split('?')[1]
   const url = `${billUrl}?${parameters}`
   return rq(url).catch(err => {
     log('info', 'authentication error details')
