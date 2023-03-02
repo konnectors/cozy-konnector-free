@@ -92,6 +92,9 @@
       }
     }
   },
+  "qualification_labels": [
+    "isp_invoice"
+  ],
   "features": [
     "LOGIN_OK",
     "METADATA_DEDUP",
