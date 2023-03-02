@@ -1,5 +1,5 @@
 {
-  "version": "1.8.0",
+  "version": "1.7.1",
   "name": "Free",
   "type": "konnector",
   "language": "node",
@@ -92,6 +92,9 @@
       }
     }
   },
+  "qualification_labels": [
+    "isp_invoice"
+  ],
   "features": [
     "LOGIN_OK",
     "METADATA_DEDUP",
