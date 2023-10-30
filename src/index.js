@@ -90,17 +90,13 @@ async function logIn(fields) {
 function parsePage($) {
   const bills = []
 
-  $('.pane li').each(function() {
-    let amount = $(this)
-      .find('.last')
-      .text()
+  $('.pane li').each(function () {
+    let amount = $(this).find('.last').text()
     amount = amount.replace(' Euros', '').replace('&euro;', '')
     amount = amount.replace(',', '.').trim()
     amount = parseFloat(amount)
 
-    let pdfUrl = $(this)
-      .find('a')
-      .attr('href')
+    let pdfUrl = $(this).find('a').attr('href')
     pdfUrl = `https://adsl.free.fr/${pdfUrl}`
 
     let month = pdfUrl.split('&')[2].split('=')[1]
