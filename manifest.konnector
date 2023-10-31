@@ -1,6 +1,6 @@
 {
   "version": "1.8.0",
-  "name": "Free",
+  "name": "Free Internet",
   "type": "konnector",
   "language": "node",
   "icon": "free.svg",
