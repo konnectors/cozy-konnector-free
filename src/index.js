@@ -31,6 +31,7 @@ module.exports = new BaseKonnector(function fetch(fields) {
         identifiers: ['free telecom', 'free hautdebit']
       })
     )
+    .then(renameParentDirectory.bind(this)(fields))
 })
 
 // Procedure to login to Free website.
@@ -90,17 +91,13 @@ async function logIn(fields) {
 function parsePage($) {
   const bills = []
 
-  $('.pane li').each(function() {
-    let amount = $(this)
-      .find('.last')
-      .text()
+  $('.pane li').each(function () {
+    let amount = $(this).find('.last').text()
     amount = amount.replace(' Euros', '').replace('&euro;', '')
     amount = amount.replace(',', '.').trim()
     amount = parseFloat(amount)
 
-    let pdfUrl = $(this)
-      .find('a')
-      .attr('href')
+    let pdfUrl = $(this).find('a').attr('href')
     pdfUrl = `https://adsl.free.fr/${pdfUrl}`
 
     let month = pdfUrl.split('&')[2].split('=')[1]
@@ -139,4 +136,29 @@ function parsePage($) {
 
 function getFileName(date) {
   return `${date.format('YYYYMM')}_free.pdf`
+}
+
+async function renameParentDirectory(fields) {
+  try {
+    const client = cozyClient.new
+    // Looking for parent directory created by home
+    const importDir = await client
+      .collection('io.cozy.files')
+      .statByPath(fields.folderPath)
+    const parentDir = await client
+      .collection('io.cozy.files')
+      .statById(importDir.data.attributes.dir_id)
+    if (parentDir.data.attributes.name == 'Free') {
+      // Renaming
+      log('info', 'Renaming parent directory to Free Internet')
+      await client
+        .collection('io.cozy.files')
+        .updateAttributes(parentDir.data._id, {
+          name: 'Free Internet'
+        })
+    }
+  } catch (e) {
+    log('error', 'Failing to rename parent directory, continuing')
+    log('error', e.message)
+  }
 }
