@@ -119,6 +119,7 @@ function parsePage($) {
           invoiceNumber: idBill,
           contractReference: contractNumber,
           isSubscription: true,
+          carbonCopy: true,
           qualification: Qualification.getByLabel('isp_invoice')
         }
       }
