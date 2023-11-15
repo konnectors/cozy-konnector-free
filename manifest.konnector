@@ -1,5 +1,5 @@
 {
-  "version": "1.9.0",
+  "version": "1.10.0",
   "name": "Free Internet",
   "type": "konnector",
   "language": "node",
@@ -108,7 +108,8 @@
     "LOGIN_OK",
     "METADATA_DEDUP",
     "BILLS",
-    "DOC_QUALIFICATION_V2"
+    "DOC_QUALIFICATION_V2",
+    "CARBON_COPY"
   ],
   "banksTransactionRegExp": "\\bfree (telecom|hautdebit)\\b",
   "manifest_version": "2"
