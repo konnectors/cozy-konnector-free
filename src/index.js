@@ -1,6 +1,6 @@
 process.env.SENTRY_DSN =
   process.env.SENTRY_DSN ||
-  'https://725c971bd511410393dca39305639382:b71f4dcedee14193ae5d82726413138b@sentry.cozycloud.cc/23'
+  'https://905252fcdc43c9547807c9a96c891e2e@errors.cozycloud.cc/66'
 
 const moment = require('moment')
 const {
